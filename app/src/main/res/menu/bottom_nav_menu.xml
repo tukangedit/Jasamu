@@ -4,17 +4,17 @@
     <item
         android:id="@+id/berandaFragment"
         android:icon="@drawable/round_home_24"
-        android:title="Beranda" />
+        android:title="@string/beranda" />
     <item
         android:id="@+id/jualFragment"
         android:icon="@drawable/round_shopping_cart_24"
-        android:title="Jual" />
+        android:title="@string/jual" />
     <item
         android:id="@+id/riwayatFragment"
         android:icon="@drawable/round_work_history_24"
-        android:title="Riwayat" />
+        android:title="@string/riwayat" />
     <item
         android:id="@+id/profilFragment"
         android:icon="@drawable/round_account_circle_24"
-        android:title="Profil" />
+        android:title="@string/profil" />
 </menu>

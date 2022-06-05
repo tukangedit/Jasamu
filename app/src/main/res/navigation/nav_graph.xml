@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/berandaFragment"
         android:name="com.bangkit.jasamu.BerandaFragment"
-        android:label="fragment_beranda"
+        android:label="@string/beranda"
         tools:layout="@layout/fragment_beranda" />
     <fragment
         android:id="@+id/jualFragment"
         android:name="com.bangkit.jasamu.JualFragment"
-        android:label="fragment_jual"
+        android:label="@string/jual"
         tools:layout="@layout/fragment_jual" />
     <fragment
         android:id="@+id/riwayatFragment"
         android:name="com.bangkit.jasamu.RiwayatFragment"
-        android:label="fragment_riwayat"
+        android:label="@string/riwayat"
         tools:layout="@layout/fragment_riwayat" />
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.bangkit.jasamu.ProfilFragment"
-        android:label="fragment_profil"
+        android:label="@string/profil"
         tools:layout="@layout/fragment_profil" />
 </navigation>
