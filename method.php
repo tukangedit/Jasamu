@@ -1,0 +1,149 @@
+<?php
+require_once "koneksi.php";
+class Mahasiswa 
+{
+ 
+   public  function get_mhss()
+   {
+      global $mysqli;
+      $query="SELECT * FROM tbl_mahasiswa";
+      $data=array();
+      $result=$mysqli->query($query);
+      while($row=mysqli_fetch_object($result))
+      {
+         $data[]=$row;
+      }
+      $response=array(
+                     'status' => 1,
+                     'message' =>'Get List Sampah Successfully.',
+                     'data' => $data
+                  );
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   }
+ 
+   public function get_mhs($id=0)
+   {
+      global $mysqli;
+      $query="SELECT * FROM tbl_mahasiswa";
+      if($id != 0)
+      {
+         $query.=" WHERE id=".$id." LIMIT 1";
+      }
+      $data=array();
+      $result=$mysqli->query($query);
+      while($row=mysqli_fetch_object($result))
+      {
+         $data[]=$row;
+      }
+      $response=array(
+                     'status' => 1,
+                     'message' =>'Get Sampah Successfully.',
+                     'data' => $data
+                  );
+      header('Content-Type: application/json');
+      echo json_encode($response);
+        
+   }
+ 
+   public function insert_mhs($id=0)
+      {
+         global $mysqli;
+         $arrcheckpost = array('kode' => '', 'nama' => '', 'jenis' => '', 'alamat' => '', 'kota' => '');
+         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
+         if($hitung == count($arrcheckpost)){
+          
+               $result = mysqli_query($mysqli, "INSERT INTO tbl_mahasiswa SET
+               kode = '$_POST[kode]',
+               nama = '$_POST[nama]',
+               jenis = '$_POST[jenis]',
+               alamat = '$_POST[alamat]',
+               kota = '$_POST[kota]'");
+                
+               if($result)
+               {
+                  $response=array(
+                     'status' => 1,
+                     'message' =>'Sampah Added Successfully.'
+                  );
+               }
+               else
+               {
+                  $response=array(
+                     'status' => 0,
+                     'message' =>'Sampah Addition Failed.'
+                  );
+               }
+         }else{
+            $response=array(
+                     'status' => 0,
+                     'message' =>'Parameter Do Not Match'
+                  );
+         }
+         header('Content-Type: application/json');
+         echo json_encode($response);
+      }
+ 
+   function update_mhs($id)
+      {
+         global $mysqli;
+         $arrcheckpost = array('kode' => '', 'nama' => '', 'jenis' => '', 'alamat' => '', 'kota'   => '');
+         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
+         if($hitung == count($arrcheckpost)){
+          
+              $result = mysqli_query($mysqli, "UPDATE tbl_mahasiswa SET
+              kode = '$_POST[kode]',
+              nama = '$_POST[nama]',
+              jenis = '$_POST[jenis]',
+              alamat = '$_POST[alamat]',
+              kota = '$_POST[kota]'
+              WHERE id='$id'");
+          
+            if($result)
+            {
+               $response=array(
+                  'status' => 1,
+                  'message' =>'Sampah Updated Successfully.'
+               );
+            }
+            else
+            {
+               $response=array(
+                  'status' => 0,
+                  'message' =>'Sampah Updation Failed.'
+               );
+            }
+         }else{
+            $response=array(
+                     'status' => 0,
+                     'message' =>'Parameter Do Not Match'
+                  );
+         }
+         header('Content-Type: application/json');
+         echo json_encode($response);
+      }
+ 
+   function delete_mhs($id)
+   {
+      global $mysqli;
+      $query="DELETE FROM tbl_mahasiswa WHERE id=".$id;
+      if(mysqli_query($mysqli, $query))
+      {
+         $response=array(
+            'status' => 1,
+            'message' =>'Sampah Deleted Successfully.'
+         );
+      }
+      else
+      {
+         $response=array(
+            'status' => 0,
+            'message' =>'Sampah Deletion Failed.'
+         );
+      }
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   }
+}
+ 
+ ?>
